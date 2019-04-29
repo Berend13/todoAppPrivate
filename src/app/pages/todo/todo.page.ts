@@ -1,5 +1,7 @@
-import { Component, OnInit, Pipe, PipeTransform } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Todo, TodoService } from '../../services/todo.service';
+import { ActivatedRoute } from '@angular/router';
+import { LoadingController, NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-todo',
@@ -8,13 +10,23 @@ import { Todo, TodoService } from '../../services/todo.service';
 })
 export class todoPage implements OnInit{
   todos: Todo[];
+  todo: Todo;
+  todoCategory = null;
 
-  constructor(private todoService: TodoService) { 
+  constructor(private todoService: TodoService, 
+    private route: ActivatedRoute, 
+    private loadingController: LoadingController,
+    private nav: NavController) { }
 
-  }
+    
   ngOnInit(){
+    //this.todoCategory = this.route.snapshot.params['category'];
+    //console.log(this.todoCategory);
+    //this.todoService.getTodosByCategory(this.todoCategory).subscribe(res => {
+    //  this.todos = res;
+    //})
     this.todoService.getTodos().subscribe(res => {
-      this.todos = res;
+     this.todos = res;
     })
   }
 
@@ -22,24 +34,3 @@ export class todoPage implements OnInit{
     this.todoService.removeTodo(item.id);
   }
 }
-
-@Pipe({
-  name: 'SortBy'
-})
-export class IeSortPipe implements PipeTransform {
-
-  transform(values: Array<string>, args?: string): any {
-
-  if(args==='ASC')
-    values = values.sort();
-    else
-    values = values.sort().reverse();
-
-    return values;
-  }
-}
-@NgModule({
-  imports: [ BrowserModule ],
-  declarations: [ App, IeSortPipe ],
-  bootstrap: [ App ]
-})

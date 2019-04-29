@@ -12,6 +12,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AngularFireModule } from '@angular/fire';
 import { environment } from '../environments/environment';
 import { AngularFirestoreModule, AngularFirestore } from '@angular/fire/firestore';
+// import { FilterPipe } from './pipes/unique.pipe';
+// import { SortBy } from './pipes/sort-by.pipe';
 
 @NgModule({
   declarations: [AppComponent],

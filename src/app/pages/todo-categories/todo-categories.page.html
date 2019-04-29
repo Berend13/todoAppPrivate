@@ -8,8 +8,8 @@
 
 <ion-content>
   <ion-list>
-    <ion-item-sliding *ngFor="let item of todos">
-      <ion-item lines="inset" button [routerLink]="['/todo']">
+    <ion-item-sliding *ngFor="let item of todos | unique">
+      <ion-item lines="inset" button [routerLink]="['/todo', item.category]">
   <ion-label>
     {{ item.category }}
   </ion-label>

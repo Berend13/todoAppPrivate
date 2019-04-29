@@ -14,7 +14,6 @@ export class TodoDetailsPage implements OnInit {
   todo: Todo = {
     task: '',
     createdAt: new Date().getTime(),
-    priority: 0,
     category: ''
   }
   

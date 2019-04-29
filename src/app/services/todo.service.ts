@@ -5,7 +5,6 @@ import { map } from 'rxjs/operators';
 
 export interface Todo {
   task: string;
-  priority: number;
   createdAt: number;
   category: string;
 }
@@ -18,6 +17,7 @@ export class TodoService {
   private todosCollection: AngularFirestoreCollection<Todo>;
 
   private todos: Observable<Todo[]>;
+  private todosByCategory: Observable<Todo[]>;
 
   constructor(db: AngularFirestore) {
     this.todosCollection = db.collection<Todo>('todos');
@@ -31,7 +31,19 @@ export class TodoService {
         })
       })
     )
+    
+    //this.todosByCategory = this.todosCollection.snapshotChanges().pipe(
+    //  map(actions => {
+    //    return actions.map(a => {
+    //      const data = a.payload.doc.data();
+    //      const category = a.payload.doc.id;
+    //     return {category, ...data};
+    //    })
+    //  })
+    //)
+
    }
+
 
    getTodos(){
      return this.todos;
@@ -40,6 +52,11 @@ export class TodoService {
    getTodo(id){
      return this.todosCollection.doc<Todo>(id).valueChanges();
    }
+
+   //getTodosByCategory(category){
+   // return this.todosByCategory;
+   //}
+
    updateTodo(todo: Todo, id: string){
      return this.todosCollection.doc(id).update(todo);
    }

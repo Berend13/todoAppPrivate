@@ -7,6 +7,8 @@ import { IonicModule } from '@ionic/angular';
 
 import { TodoCategoriesPage } from './todo-categories.page';
 
+import { FilterPipe } from '../../pipes/unique.pipe';
+
 const routes: Routes = [
   {
     path: '',
@@ -21,6 +23,6 @@ const routes: Routes = [
     IonicModule,
     RouterModule.forChild(routes)
   ],
-  declarations: [TodoCategoriesPage]
+  declarations: [TodoCategoriesPage, FilterPipe]
 })
 export class TodoCategoriesPageModule {}

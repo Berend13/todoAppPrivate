@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { IonicModule } from '@ionic/angular';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import { SortBy } from '../../pipes/sort-by.pipe'
 
 import { todoPage } from './todo.page';
 
@@ -18,6 +19,6 @@ import { todoPage } from './todo.page';
       }
     ])
   ],
-  declarations: [todoPage]
+  declarations: [todoPage, SortBy]
 })
 export class TodoPageModule {}
